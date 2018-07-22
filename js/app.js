@@ -14,7 +14,7 @@ let Enemy = function(x, y, speed = "med") {
 
 Enemy.prototype.changeSpeed = function() {
   let speedkey = Math.floor(Math.random() * 3);
-  this.speed = availableSpeeds(speedkey);
+  this.speed = this.availableSpeeds[speedkey];
 };
 
 // Update the enemy's position, required method for game
@@ -24,17 +24,17 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
-    this.movement = 50;
+    this.movement = 400;
     if(this.speed == "fast") {
-      this.movement = 100;
+      this.movement = 800;
     } else if(this.speed == "slow") {
-      this.movement = 10;
+      this.movement = 100;
     }
 
     this.x = this.x + (this.movement * dt);
     if( this.x > 505 ){
       this.x = 0;
-      this.changeSpeed;
+      this.changeSpeed();
     }
 };
 
@@ -78,7 +78,8 @@ Player.prototype.render = function(dt) {
 // Place all enemy objects in an array called allEnemies
 let allEnemies = [
   new Enemy(0, 60),
-  new Enemy(0, 144, "fast")
+  new Enemy(0, 144, "fast"),
+  new Enemy(0, 228)
 ];
 console.log(allEnemies);
 
