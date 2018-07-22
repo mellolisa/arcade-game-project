@@ -39,6 +39,15 @@ Enemy.prototype.update = function(dt) {
     if( this.x > 505 ){
       this.x = 0;
       this.changeSpeed();
+
+      //every time an enemy makes it to the other side, add another enemy
+      //row for new enemy
+
+      let rowkey = Math.floor(Math.random() *3);
+      allEnemies.push(new Enemy(rowkey, "med"));
+      if(allEnemies.length > 5) {
+        allEnemies.pop();
+      }
     }
 };
 
@@ -80,11 +89,7 @@ Player.prototype.render = function(dt) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-let allEnemies = [
-  new Enemy(0, "med"),
-  new Enemy(1, "fast"),
-  new Enemy(2, "slow")
-];
+let allEnemies = [new Enemy()];
 console.log(allEnemies);
 
 // Place the player object in a variable called player
