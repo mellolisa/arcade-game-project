@@ -1,14 +1,17 @@
 // Enemies our player must avoid
-let Enemy = function(x, y, speed = "med") {
+let Enemy = function(rowkey = 1, speed = "med") {
+
+    //available values
+    this.availableSpeeds = ["slow", "med", "fast"];
+    this.rowYValues = [60, 144, 228];
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = x;
-    this.y = y;
-    this.availableSpeeds = ["slow", "med", "fast"];
+    this.x = 0;
+    this.y = this.rowYValues[rowkey];
     this.speed = speed;
 };
 
@@ -24,6 +27,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
+    //create an amount of movement for slow, medium and fast speeds
     this.movement = 400;
     if(this.speed == "fast") {
       this.movement = 800;
@@ -77,9 +81,9 @@ Player.prototype.render = function(dt) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 let allEnemies = [
-  new Enemy(0, 60),
-  new Enemy(0, 144, "fast"),
-  new Enemy(0, 228)
+  new Enemy(0, "med"),
+  new Enemy(1, "fast"),
+  new Enemy(2, "slow")
 ];
 console.log(allEnemies);
 
