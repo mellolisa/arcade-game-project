@@ -73,6 +73,11 @@ Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if ( this.y <= 20 ) {
+      alert("You win the game!");
+      this.reset();
+    }
+
 };
 
 // Draw the player on the screen, required method for game
@@ -82,22 +87,38 @@ Player.prototype.render = function(dt) {
 
 Player.prototype.handleInput = function(dt) {
     console.log("in player's Handle Input function!");
-
+/*
+This page was a good resource to get started here:
+https://discussions.udacity.com/t/i-dont-understand-how-to-code-classic-arcade-game/527836/2
+*/
     switch (dt) {
       case "up":
         this.y -= 85;
         break;
       case "down":
-        this.y += 85;
+        if ( this.y < 400 ){
+          this.y += 85;
+        }
         break;
       case "left":
-        this.x -= 100;
+        if ( this.x > 10 ) {
+          this.x -= 100;
+        }
         break;
       case "right":
-        this.x += 100;
+        if ( this.x < 380) {
+          this.x += 100;
+        }
         break;
     }
+
 };
+
+Player.prototype.reset = function() {
+  console.log("Reset function");
+  delete player;
+  player = new Player();
+}
 
 
 
