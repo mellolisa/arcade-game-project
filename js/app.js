@@ -63,7 +63,7 @@ let Player = function() {
     // Variables applied to each of our instances go here,
     this.sprite = 'images/char-cat-girl.png';
     this.x = 203;
-    this.y = 400;
+    this.y = 415;
 };
 
 // Update the player's position, required method for game
@@ -80,11 +80,26 @@ Player.prototype.render = function(dt) {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-/* Player.prototpye.handleInput = function(dt) {
-   console.log("in player's handle input function!");
+Player.prototype.handleInput = function(dt) {
+    console.log("in player's Handle Input function!");
+
+    switch (dt) {
+      case "up":
+        this.y -= 85;
+        break;
+      case "down":
+        this.y += 85;
+        break;
+      case "left":
+        this.x -= 100;
+        break;
+      case "right":
+        this.x += 100;
+        break;
+    }
 };
 
-*/
+
 
 
 // Now instantiate your objects.
