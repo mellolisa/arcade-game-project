@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function() {
+let Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -24,13 +24,39 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+let Player = function() {
+    // Variables applied to each of our instances go here,
+    this.sprite = 'images/char-car-girl.png';
+};
+
+// Update the player's position, required method for game
+// Parameter: dt, a time delta between ticks
+Player.prototype.update = function(dt) {
+    console.log("in player's update function!");
+    // You should multiply any movement by the dt parameter
+    // which will ensure the game runs at the same speed for
+    // all computers.
+};
+
+// Draw the enemy on the screen, required method for game
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+//Player.prototpye.handleInput = function() {
+//   console.log("in player's handle input function!");
+//};
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+let enemyOne = new Enemy();
+let enemyTwo = new Enemy();
+let allEnemies = [enemyOne, enemyTwo];
+console.log(allEnemies);
+
 // Place the player object in a variable called player
-
-
+let player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
