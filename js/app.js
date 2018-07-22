@@ -28,7 +28,7 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 let Player = function() {
     // Variables applied to each of our instances go here,
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/char-cat-girl.png';
     this.x = 203;
     this.y = 400;
 };
