@@ -16,8 +16,8 @@ let Enemy = function(rowkey = 1, speed = "med") {
 };
 
 Enemy.prototype.changeSpeed = function() {
-  let speedkey = Math.floor(Math.random() * 3);
-  this.speed = this.availableSpeeds[speedkey];
+    let speedkey = Math.floor(Math.random() * 3);
+    this.speed = this.availableSpeeds[speedkey];
 };
 
 // Update the enemy's position, required method for game
@@ -29,25 +29,25 @@ Enemy.prototype.update = function(dt) {
 
     //create an amount of movement for slow, medium and fast speeds
     this.movement = 400;
-    if(this.speed == "fast") {
-      this.movement = 800;
-    } else if(this.speed == "slow") {
-      this.movement = 100;
+    if (this.speed == "fast") {
+        this.movement = 800;
+    } else if (this.speed == "slow") {
+        this.movement = 100;
     }
 
     this.x = this.x + (this.movement * dt);
-    if( this.x > 505 ){
-      this.x = 0;
-      this.changeSpeed();
+    if (this.x > 505) {
+        this.x = 0;
+        this.changeSpeed();
 
-      //every time an enemy makes it to the other side, add another enemy
-      //row for new enemy
+        //every time an enemy makes it to the other side, add another enemy
+        //row for new enemy
 
-      let rowkey = Math.floor(Math.random() *3);
-      allEnemies.push(new Enemy(rowkey, "med"));
-      if(allEnemies.length > 5) {
-        allEnemies.pop();
-      }
+        let rowkey = Math.floor(Math.random() * 3);
+        allEnemies.push(new Enemy(rowkey, "med"));
+        if (allEnemies.length > 5) {
+            allEnemies.pop();
+        }
     }
 };
 
@@ -68,14 +68,12 @@ let Player = function() {
 
 // Update the player's position, required method for game
 // Parameter: dt, a time delta between ticks
-Player.prototype.update = function(dt) {
-    console.log("in player's update function!");
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-    if ( this.y <= 20 ) {
-      alert("You win the game!");
-      this.reset();
+Player.prototype.update = function() {
+    //Whenever the player is updated, check to see if either the game is won or lost
+
+    if (this.y <= 20) {
+        setTimeout(alert("You win the game!"), 3000);
+        this.reset();
     }
 
     this.checkForBugs();
@@ -88,53 +86,51 @@ Player.prototype.render = function(dt) {
 };
 
 Player.prototype.handleInput = function(dt) {
-    console.log("in player's Handle Input function!");
-/*
-This page was a good resource to get started here:
-https://discussions.udacity.com/t/i-dont-understand-how-to-code-classic-arcade-game/527836/2
-*/
+    /*
+    This page was a good resource to get started here:
+    https://discussions.udacity.com/t/i-dont-understand-how-to-code-classic-arcade-game/527836/2
+    */
     switch (dt) {
-      case "up":
-        this.y -= 85;
-        break;
-      case "down":
-        if ( this.y < 400 ){
-          this.y += 85;
-        }
-        break;
-      case "left":
-        if ( this.x > 10 ) {
-          this.x -= 100;
-        }
-        break;
-      case "right":
-        if ( this.x < 380) {
-          this.x += 100;
-        }
-        break;
+        case "up":
+            this.y -= 85;
+            break;
+        case "down":
+            if (this.y < 400) {
+                this.y += 85;
+            }
+            break;
+        case "left":
+            if (this.x > 10) {
+                this.x -= 100;
+            }
+            break;
+        case "right":
+            if (this.x < 380) {
+                this.x += 100;
+            }
+            break;
     }
 
 };
 
-Player.prototype.checkForBugs = function () {
-  for(let i = 0; i < allEnemies.length; i++) {
-    let yDiff = Math.abs(allEnemies[i].y - this.y);
-    let xDiff = Math.abs(allEnemies[i].x - this.x);
-    console.log("This: " + this);
-    console.log("Enemy: " + allEnemies[i]);
-    console.log("yDiff: " + yDiff);
-    console.log("xDiff: " + xDiff);
-    if( yDiff <= 20 && xDiff <= 20 ) {
-       alert("You lose the game!");
-       this.reset();
+Player.prototype.checkForBugs = function() {
+    //Sets a boundary around the player - if the bug crosses into this boundary, the player loses
+
+    for (let i = 0; i < allEnemies.length; i++) {
+        let yDiff = Math.abs(allEnemies[i].y - this.y);
+        let xDiff = Math.abs(allEnemies[i].x - this.x);
+        if (yDiff <= 25 && xDiff <= 25) {
+            setTimeout(alert("You lose the game!"), 3000);
+            this.reset();
+        }
     }
-  }
 }
 
 Player.prototype.reset = function() {
-  console.log("Reset function");
-  delete player;
-  player = new Player();
+    //Resets the game by removing the player object and creating a new one
+
+    delete player;
+    player = new Player();
 }
 
 
@@ -143,11 +139,9 @@ Player.prototype.reset = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 let allEnemies = [new Enemy()];
-console.log(allEnemies);
 
 // Place the player object in a variable called player
 let player = new Player();
-console.log(player);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
