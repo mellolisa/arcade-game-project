@@ -78,6 +78,8 @@ Player.prototype.update = function(dt) {
       this.reset();
     }
 
+    this.checkForBugs();
+
 };
 
 // Draw the player on the screen, required method for game
@@ -113,6 +115,21 @@ https://discussions.udacity.com/t/i-dont-understand-how-to-code-classic-arcade-g
     }
 
 };
+
+Player.prototype.checkForBugs = function () {
+  for(let i = 0; i < allEnemies.length; i++) {
+    let yDiff = Math.abs(allEnemies[i].y - this.y);
+    let xDiff = Math.abs(allEnemies[i].x - this.x);
+    console.log("This: " + this);
+    console.log("Enemy: " + allEnemies[i]);
+    console.log("yDiff: " + yDiff);
+    console.log("xDiff: " + xDiff);
+    if( yDiff <= 20 && xDiff <= 20 ) {
+       alert("You lose the game!");
+       this.reset();
+    }
+  }
+}
 
 Player.prototype.reset = function() {
   console.log("Reset function");
