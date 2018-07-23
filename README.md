@@ -1,8 +1,23 @@
-#arcade-game-project
+# Arcade Game Project
 
-frontend-nanodegree-arcade-game
-===============================
+## Table of Contents
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+* [Introduction](#introduction)
+* [Features](#features)
+* [Dependencies](#dependencies)
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Introduction
+
+This is a student project by Lisa M. Venezia that will help me practice coding using Object Oriented Javascript.  
+The finished project is a Frogger-like game where the player has to cross to the water without getting hit by a bug!
+
+## Features
+
+The following features are included in this arcade game:
+- A playing field is presented to the user.
+- The player character is rendered on the screen and the user can move the player by manipulating the arrow keys.
+- Enemy bugs are rendered on the screen and can move at three different speeds.
+- Game ends when either the player makes it to the water or the player collides with a bug.
+
+## Dependencies
+This project was created based on sample code provided by Udacity (http://www.udacity.com).
