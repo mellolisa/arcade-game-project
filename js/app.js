@@ -1,3 +1,4 @@
+"use strict";
 // Enemies our player must avoid
 let Enemy = function(rowkey = 1, speed = "med") {
 
@@ -129,7 +130,7 @@ Player.prototype.checkForBugs = function() {
 Player.prototype.reset = function() {
     //Resets the game by removing the player object and creating a new one
 
-    delete player;
+    player = null;
     player = new Player();
 }
 
